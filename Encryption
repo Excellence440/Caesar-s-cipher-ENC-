@@ -1,0 +1,32 @@
+# We need 2 helper mappings, from letters to ints and the inverse
+L2I = dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ", range(26)))
+I2L = dict(zip(range(26), "ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+Alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+key = 3
+
+# Get plaintext from user
+plaintext = input("Message: ")
+
+# Encipher
+ciphertext = []
+for c in plaintext.upper():
+    if c.isalpha():
+        ciphertext.append(I2L[(L2I[c] + key) % 26])
+    else:
+        ciphertext.append(c)
+ciphertext = ''.join(ciphertext)
+
+# Decipher
+plaintext2 = []
+for c in ciphertext.upper():
+    if c.isalpha():
+        plaintext2.append(I2L[(L2I[c] - key) % 26])
+    else:
+        plaintext2.append(c)
+plaintext2 = ''.join(plaintext2)
+
+# Print plaintext, ciphertext, and alphabet
+print(ciphertext)
+print(plaintext2)
+print(Alpha)
+
